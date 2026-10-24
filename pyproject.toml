@@ -10,7 +10,7 @@ readme = "README.md"
 authors = [
     { name = "pako", email = "pako@uabc.edu.mx" }
 ]
-license = { text = "MIT" }
+license = "MIT"
 requires-python = ">=3.8"
 dependencies = [
     "duckdb>=0.9.0",
@@ -19,3 +19,6 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/pakouabc/bimarron"
+
+[tool.setuptools.packages.find]
+include = ["bimarron*"]
