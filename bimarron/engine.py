@@ -23,11 +23,17 @@ class BIEngine:
   # 1. MÓDULO ETL (Transformación y Limpieza)
   # ==========================================
   def etl_limpiar_nulos(self, columna: str, valor_por_defecto):
-    """Reemplaza valores nulos en una columna."""
+    """Reemplaza valores nulos en una columna, convirtiendo el tipo si es necesario."""
+    # Si el valor por defecto es un string, aseguramos que la columna sea de tipo VARCHAR
+    if isinstance(valor_por_defecto, str):
+      self.conn.execute(
+          f"ALTER TABLE fact_table ALTER COLUMN {columna} TYPE VARCHAR"
+      )
+
     self.conn.execute(f"""
-            UPDATE fact_table 
-            SET {columna} = COALESCE({columna}, '{valor_por_defecto}')
-        """)
+          UPDATE fact_table 
+          SET {columna} = COALESCE({columna}, '{valor_por_defecto}')
+      """)
     return self
 
   def etl_crear_columna_tiempo(self, columna_fecha: str):
