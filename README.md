@@ -43,11 +43,11 @@ pip install git+https://github.com/pakouabc/bimarron.git
 Un pipeline completo de Inteligencia de Negocios en unos pocos pasos:
 
 ```python
-from bimarron import BiEngine
+from bimarron import BIEngine
 
 # 1. Inicializar con la tabla de hechos
 analisis = (
-    BiEngine("ventas_fact.csv")
+    BIEngine("ventas_fact.csv")
     
     # 2. ETL y Calidad de Datos
     .etl_limpiar_nulos("sucursal_id", "DESCONOCIDA")
